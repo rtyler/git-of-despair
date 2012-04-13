@@ -7,11 +7,13 @@ selector: unescape('bootstrap%3A'),
 category: 'initializers',
 fn: function (aUsername){
 var self=this;
-smalltalk.send((smalltalk.Repo || Repo), "_fetchReposFor_withEachDo_finally_", [aUsername, (function(repo){return nil;}), (function(){return nil;})]);
+smalltalk.send((smalltalk.Repo || Repo), "_fetchReposFor_withEachDo_finally_", [aUsername, (function(repo){var reponame=nil;
+var forks=nil;
+(reponame=smalltalk.send(repo, "_at_", ["name"]));(forks=smalltalk.send(repo, "_at_", ["forks"]));return ((($receiver = ((($receiver = forks).klass === smalltalk.Number) ? $receiver <(2) : smalltalk.send($receiver, "__lt", [(2)]))).klass === smalltalk.Boolean) ? (! $receiver ? (function(){return (($receiver = reponame) != nil && $receiver != undefined) ? (function(){return smalltalk.send(self['@repos'], "_at_put_", [reponame, nil]);})() : nil;})() : nil) : smalltalk.send($receiver, "_ifFalse_", [(function(){return (($receiver = reponame) != nil && $receiver != undefined) ? (function(){return smalltalk.send(self['@repos'], "_at_put_", [reponame, nil]);})() : nil;})]));}), (function(){return nil;})]);
 return self;},
 args: ["aUsername"],
-source: unescape('bootstrap%3A%20aUsername%0A%09%22%20Start%20the%20application%20loading%20with%20aUsername%20%22%0A%0A%09Repo%20fetchReposFor%3A%20aUsername%0A%09%09withEachDo%3A%20%5B%20%3Arepo%20%7C%20%5D%0A%09%09finally%3A%20%5B%20%22continue%20initialization%22%20%5D.'),
-messageSends: ["fetchReposFor:withEachDo:finally:"],
+source: unescape('bootstrap%3A%20aUsername%0A%09%22%20Start%20the%20application%20loading%20with%20aUsername%20%22%0A%0A%09Repo%20fetchReposFor%3A%20aUsername%0A%09%09withEachDo%3A%20%5B%20%3Arepo%20%7C%0A%09%09%09%7C%20reponame%20forks%20%7C%0A%09%09%09reponame%20%3A%3D%20repo%20at%3A%20%27name%27.%0A%09%09%09forks%20%3A%3D%20repo%20at%3A%20%27forks%27.%0A%09%09%09%28forks%20%3C%202%29%20ifFalse%3A%20%5B%20reponame%20ifNotNil%3A%20%5B%20repos%20at%3A%20reponame%20put%3A%20nil%20%5D%20%5D%0A%09%09%5D%0A%09%09finally%3A%20%5B%20%20%5D.'),
+messageSends: ["fetchReposFor:withEachDo:finally:", "at:", "ifFalse:", unescape("%3C"), "ifNotNil:", "at:put:"],
 referencedClasses: ["Repo"]
 }),
 smalltalk.DespairApp);

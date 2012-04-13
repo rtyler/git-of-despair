@@ -9,8 +9,13 @@ bootstrap: aUsername
 	" Start the application loading with aUsername "
 
 	Repo fetchReposFor: aUsername
-		withEachDo: [ :repo | ]
-		finally: [ "continue initialization" ].
+		withEachDo: [ :repo |
+			| reponame forks |
+			reponame := repo at: 'name'.
+			forks := repo at: 'forks'.
+			(forks < 2) ifFalse: [ reponame ifNotNil: [ repos at: reponame put: nil ] ]
+		]
+		finally: [  ].
 !
 
 initialize
