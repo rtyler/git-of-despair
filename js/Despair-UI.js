@@ -33,5 +33,22 @@ referencedClasses: []
 }),
 smalltalk.Project);
 
+smalltalk.addMethod(
+unescape('_renderOn_'),
+smalltalk.method({
+selector: unescape('renderOn%3A'),
+category: 'rendering',
+fn: function (html){
+var self=this;
+smalltalk.send(html, "_with_", [self['@repo']]);
+smalltalk.send(html, "_br", []);
+return self;},
+args: ["html"],
+source: unescape('renderOn%3A%20html%0A%09html%20with%3A%20repo.%0A%09html%20br.'),
+messageSends: ["with:", "br"],
+referencedClasses: []
+}),
+smalltalk.Project);
+
 
 

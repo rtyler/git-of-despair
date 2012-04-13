@@ -15,3 +15,10 @@ withRepo: aRepo andPullRequests: anArrayOfRequests
 	pulls := anArrayOfRequests.
 ! !
 
+!Project methodsFor: 'rendering'!
+
+renderOn: html
+	html with: repo.
+	html br.
+! !
+

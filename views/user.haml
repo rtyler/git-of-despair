@@ -11,6 +11,10 @@
           Run Amber IDE
     %h2
       #{user} of Despair
+    %center
+      %div.spinner
+        %img{:src => '/images/octocat-spinner-64.gif'}
+      %div.projects
 
     = embed_amber(:on_ready => "smalltalk.DespairApp._current()._bootstrap_('#{user}');")
 

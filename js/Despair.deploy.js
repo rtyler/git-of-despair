@@ -46,7 +46,21 @@ smalltalk.method({
 selector: unescape('activateRepo%3A'),
 fn: function (aRepoName){
 var self=this;
-smalltalk.send(self['@activeRepos'], "_add_", [aRepoName]);
+var pulls=nil;
+smalltalk.send(smalltalk.send("div.spinner", "_asJQuery", []), "_hide", []);
+(pulls=smalltalk.send(self['@repos'], "_at_ifAbsent_", [aRepoName, (function(){return nil;})]));
+(($receiver = pulls) != nil && $receiver != undefined) ? (function(){smalltalk.send(self['@activeRepos'], "_add_", [aRepoName]);return smalltalk.send(smalltalk.send(smalltalk.send((smalltalk.Project || Project), "_new", []), "_withRepo_andPullRequests_", [aRepoName, pulls]), "_appendToJQuery_", [smalltalk.send("div.projects", "_asJQuery", [])]);})() : nil;
+return self;}
+}),
+smalltalk.DespairApp);
+
+smalltalk.addMethod(
+unescape('_activeRepos'),
+smalltalk.method({
+selector: unescape('activeRepos'),
+fn: function (){
+var self=this;
+return self['@activeRepos'];
 return self;}
 }),
 smalltalk.DespairApp);

@@ -3,6 +3,12 @@ Object subclass: #DespairApp
 	instanceVariableNames: 'repos username activeRepos'
 	category: 'Despair'!
 
+!DespairApp methodsFor: 'accessors'!
+
+activeRepos
+	^ activeRepos.
+! !
+
 !DespairApp methodsFor: 'actions'!
 
 loadPullRequests
@@ -24,7 +30,14 @@ loadPullRequests
 !
 
 activateRepo: aRepoName
-	activeRepos add: aRepoName.
+	| pulls |
+	"As soon as we start activating repos, it's safe to hide the spinner from the user"
+	'div.spinner' asJQuery hide.
+	pulls := repos at: aRepoName ifAbsent: [].
+	pulls ifNotNil: [
+		activeRepos add: aRepoName.
+		(Project new withRepo: aRepoName andPullRequests: pulls) appendToJQuery: 'div.projects' asJQuery.
+	].
 ! !
 
 !DespairApp methodsFor: 'initializers'!

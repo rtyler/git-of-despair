@@ -23,5 +23,17 @@ return self;}
 }),
 smalltalk.Project);
 
+smalltalk.addMethod(
+unescape('_renderOn_'),
+smalltalk.method({
+selector: unescape('renderOn%3A'),
+fn: function (html){
+var self=this;
+smalltalk.send(html, "_with_", [self['@repo']]);
+smalltalk.send(html, "_br", []);
+return self;}
+}),
+smalltalk.Project);
+
 
 

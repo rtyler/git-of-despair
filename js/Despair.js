@@ -62,11 +62,30 @@ selector: unescape('activateRepo%3A'),
 category: 'actions',
 fn: function (aRepoName){
 var self=this;
-smalltalk.send(self['@activeRepos'], "_add_", [aRepoName]);
+var pulls=nil;
+smalltalk.send(smalltalk.send("div.spinner", "_asJQuery", []), "_hide", []);
+(pulls=smalltalk.send(self['@repos'], "_at_ifAbsent_", [aRepoName, (function(){return nil;})]));
+(($receiver = pulls) != nil && $receiver != undefined) ? (function(){smalltalk.send(self['@activeRepos'], "_add_", [aRepoName]);return smalltalk.send(smalltalk.send(smalltalk.send((smalltalk.Project || Project), "_new", []), "_withRepo_andPullRequests_", [aRepoName, pulls]), "_appendToJQuery_", [smalltalk.send("div.projects", "_asJQuery", [])]);})() : nil;
 return self;},
 args: ["aRepoName"],
-source: unescape('activateRepo%3A%20aRepoName%0A%09activeRepos%20add%3A%20aRepoName.'),
-messageSends: ["add:"],
+source: unescape('activateRepo%3A%20aRepoName%0A%09%7C%20pulls%20%7C%0A%09%22As%20soon%20as%20we%20start%20activating%20repos%2C%20it%27s%20safe%20to%20hide%20the%20spinner%20from%20the%20user%22%0A%09%27div.spinner%27%20asJQuery%20hide.%0A%09pulls%20%3A%3D%20repos%20at%3A%20aRepoName%20ifAbsent%3A%20%5B%5D.%0A%09pulls%20ifNotNil%3A%20%5B%0A%09%09activeRepos%20add%3A%20aRepoName.%0A%09%09%28Project%20new%20withRepo%3A%20aRepoName%20andPullRequests%3A%20pulls%29%20appendToJQuery%3A%20%27div.projects%27%20asJQuery.%0A%09%5D.'),
+messageSends: ["hide", "asJQuery", "at:ifAbsent:", "ifNotNil:", "add:", "appendToJQuery:", "withRepo:andPullRequests:", "new"],
+referencedClasses: ["Project"]
+}),
+smalltalk.DespairApp);
+
+smalltalk.addMethod(
+unescape('_activeRepos'),
+smalltalk.method({
+selector: unescape('activeRepos'),
+category: 'accessors',
+fn: function (){
+var self=this;
+return self['@activeRepos'];
+return self;},
+args: [],
+source: unescape('activeRepos%0A%09%5E%20activeRepos.'),
+messageSends: [],
 referencedClasses: []
 }),
 smalltalk.DespairApp);
