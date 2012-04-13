@@ -7,14 +7,16 @@ selector: unescape('bootstrap%3A'),
 category: 'initializers',
 fn: function (aUsername){
 var self=this;
+var presetRepoName=nil;
 (self['@username']=aUsername);
-smalltalk.send((smalltalk.Repo || Repo), "_fetchReposFor_withEachDo_finally_", [aUsername, (function(repo){var reponame=nil;
+(presetRepoName=smalltalk.send((typeof window == 'undefined' ? nil : window), "_at_", ["despair_repo"]));
+(($receiver = presetRepoName) == nil || $receiver == undefined) ? (function(){return smalltalk.send((smalltalk.Repo || Repo), "_fetchReposFor_withEachDo_finally_", [aUsername, (function(repo){var reponame=nil;
 var forks=nil;
-(reponame=smalltalk.send(repo, "_at_", ["name"]));(forks=smalltalk.send(repo, "_at_", ["forks"]));return ((($receiver = ((($receiver = forks).klass === smalltalk.Number) ? $receiver <(2) : smalltalk.send($receiver, "__lt", [(2)]))).klass === smalltalk.Boolean) ? (! $receiver ? (function(){return (($receiver = reponame) != nil && $receiver != undefined) ? (function(){return smalltalk.send(self['@repos'], "_at_put_", [reponame, smalltalk.send((smalltalk.Array || Array), "_new", [])]);})() : nil;})() : nil) : smalltalk.send($receiver, "_ifFalse_", [(function(){return (($receiver = reponame) != nil && $receiver != undefined) ? (function(){return smalltalk.send(self['@repos'], "_at_put_", [reponame, smalltalk.send((smalltalk.Array || Array), "_new", [])]);})() : nil;})]));}), (function(){return smalltalk.send(self, "_loadPullRequests", []);})]);
+(reponame=smalltalk.send(repo, "_at_", ["name"]));(forks=smalltalk.send(repo, "_at_", ["forks"]));return ((($receiver = ((($receiver = forks).klass === smalltalk.Number) ? $receiver <(2) : smalltalk.send($receiver, "__lt", [(2)]))).klass === smalltalk.Boolean) ? (! $receiver ? (function(){return (($receiver = reponame) != nil && $receiver != undefined) ? (function(){return smalltalk.send(self['@repos'], "_at_put_", [reponame, smalltalk.send((smalltalk.Array || Array), "_new", [])]);})() : nil;})() : nil) : smalltalk.send($receiver, "_ifFalse_", [(function(){return (($receiver = reponame) != nil && $receiver != undefined) ? (function(){return smalltalk.send(self['@repos'], "_at_put_", [reponame, smalltalk.send((smalltalk.Array || Array), "_new", [])]);})() : nil;})]));}), (function(){return smalltalk.send(self, "_loadPullRequests", []);})]);})() : (function(){smalltalk.send(self['@repos'], "_at_put_", [presetRepoName, smalltalk.send((smalltalk.Array || Array), "_new", [])]);return smalltalk.send(self, "_loadPullRequests", []);})();
 return self;},
 args: ["aUsername"],
-source: unescape('bootstrap%3A%20aUsername%0A%09%22%20Start%20the%20application%20loading%20with%20aUsername%20%22%0A%09username%20%3A%3D%20aUsername.%0A%0A%09Repo%20fetchReposFor%3A%20aUsername%0A%09%09withEachDo%3A%20%5B%20%3Arepo%20%7C%0A%09%09%09%7C%20reponame%20forks%20%7C%0A%09%09%09reponame%20%3A%3D%20repo%20at%3A%20%27name%27.%0A%09%09%09forks%20%3A%3D%20repo%20at%3A%20%27forks%27.%0A%09%09%09%28forks%20%3C%202%29%20ifFalse%3A%20%5B%20reponame%20ifNotNil%3A%20%5B%20repos%20at%3A%20reponame%20put%3A%20%28Array%20new%29%20%5D%20%5D%0A%09%09%5D%0A%09%09finally%3A%20%5B%20self%20loadPullRequests%20%5D.'),
-messageSends: ["fetchReposFor:withEachDo:finally:", "at:", "ifFalse:", unescape("%3C"), "ifNotNil:", "at:put:", "new", "loadPullRequests"],
+source: unescape('bootstrap%3A%20aUsername%0A%09%22%20Start%20the%20application%20loading%20with%20aUsername%20%22%0A%09%7C%20presetRepoName%20%7C%0A%09username%20%3A%3D%20aUsername.%0A%09presetRepoName%20%3A%3D%20%28window%20at%3A%20%27despair_repo%27%29.%0A%0A%09presetRepoName%0A%09%09ifNotNil%3A%20%5B%0A%09%09%09repos%20at%3A%20presetRepoName%20put%3A%20%28Array%20new%29.%0A%09%09%09self%20loadPullRequests.%0A%09%09%5D%0A%09%09ifNil%3A%20%5B%0A%09%09%09Repo%20fetchReposFor%3A%20aUsername%0A%09%09%09%09withEachDo%3A%20%5B%20%3Arepo%20%7C%0A%09%09%09%09%09%7C%20reponame%20forks%20%7C%0A%09%09%09%09%09reponame%20%3A%3D%20repo%20at%3A%20%27name%27.%0A%09%09%09%09%09forks%20%3A%3D%20repo%20at%3A%20%27forks%27.%0A%09%09%09%09%09%28forks%20%3C%202%29%20ifFalse%3A%20%5B%20reponame%20ifNotNil%3A%20%5B%20repos%20at%3A%20reponame%20put%3A%20%28Array%20new%29%20%5D%20%5D%0A%09%09%09%09%5D%0A%09%09%09%09finally%3A%20%5B%20self%20loadPullRequests%20%5D.%0A%09%09%5D.%0A%09%0A'),
+messageSends: ["at:", "ifNotNil:ifNil:", "fetchReposFor:withEachDo:finally:", "ifFalse:", unescape("%3C"), "ifNotNil:", "at:put:", "new", "loadPullRequests"],
 referencedClasses: ["Repo", "Array"]
 }),
 smalltalk.DespairApp);
@@ -85,6 +87,22 @@ return self['@activeRepos'];
 return self;},
 args: [],
 source: unescape('activeRepos%0A%09%5E%20activeRepos.'),
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.DespairApp);
+
+smalltalk.addMethod(
+unescape('_repos'),
+smalltalk.method({
+selector: unescape('repos'),
+category: 'accessors',
+fn: function (){
+var self=this;
+return self['@repos'];
+return self;},
+args: [],
+source: unescape('repos%0A%09%5E%20repos.'),
 messageSends: [],
 referencedClasses: []
 }),

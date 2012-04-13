@@ -1,5 +1,5 @@
 smalltalk.addPackage('Despair-UI', {});
-smalltalk.addClass('PullRequestTile', smalltalk.Widget, ['pull', 'minutesOld'], 'Despair-UI');
+smalltalk.addClass('PullRequestTile', smalltalk.Widget, ['pull', 'minutesOld', 'lastUpdatedText'], 'Despair-UI');
 smalltalk.addMethod(
 unescape('_withPull_'),
 smalltalk.method({
@@ -17,7 +17,8 @@ smalltalk.method({
 selector: unescape('renderOn%3A'),
 fn: function (html){
 var self=this;
-(function($rec){smalltalk.send($rec, "_class_", [smalltalk.send("pull_request_tile sadness_", "__comma", [smalltalk.send(smalltalk.send(self, "_sadness", []), "_asString", [])])]);return smalltalk.send($rec, "_with_", [(function(){smalltalk.send(smalltalk.send(html, "_strong", []), "_with_", [smalltalk.send(self['@pull'], "_title", [])]);smalltalk.send(html, "_br", []);smalltalk.send(html, "_with_", [smalltalk.send("Last updated: ", "__comma", [smalltalk.send(self, "_lastUpdated", [])])]);smalltalk.send(html, "_br", []);return smalltalk.send(html, "_with_", [smalltalk.send(self, "_sadness", [])]);})]);})(smalltalk.send(html, "_div", []));
+(self['@lastUpdatedText']=smalltalk.send(self, "_lastUpdated", []));
+(function($rec){smalltalk.send($rec, "_class_", [smalltalk.send("pull_request_tile sadness_", "__comma", [smalltalk.send(smalltalk.send(self, "_sadness", []), "_asString", [])])]);return smalltalk.send($rec, "_with_", [(function(){smalltalk.send(smalltalk.send(html, "_strong", []), "_with_", [(function(){return (function($rec){smalltalk.send($rec, "_href_", [smalltalk.send(self['@pull'], "_url", [])]);smalltalk.send($rec, "_target_", ["_blank"]);return smalltalk.send($rec, "_with_", [smalltalk.send(self['@pull'], "_title", [])]);})(smalltalk.send(html, "_a", []));})]);smalltalk.send(html, "_br", []);return smalltalk.send(html, "_with_", [smalltalk.send("Last updated: ", "__comma", [self['@lastUpdatedText']])]);})]);})(smalltalk.send(html, "_div", []));
 return self;}
 }),
 smalltalk.PullRequestTile);
@@ -103,8 +104,7 @@ smalltalk.method({
 selector: unescape('renderOn%3A'),
 fn: function (html){
 var self=this;
-smalltalk.send(html, "_with_", [self['@repo']]);
-(function($rec){smalltalk.send($rec, "_id_", [self['@repo']]);smalltalk.send($rec, "_class_", ["project_tile"]);return smalltalk.send($rec, "_with_", [(function(){return smalltalk.send(self['@pulls'], "_do_", [(function(pull){return (function($rec){smalltalk.send($rec, "_withPull_", [pull]);return smalltalk.send($rec, "_renderOn_", [html]);})(smalltalk.send((smalltalk.PullRequestTile || PullRequestTile), "_new", []));})]);})]);})(smalltalk.send(html, "_div", []));
+(function($rec){smalltalk.send($rec, "_id_", [self['@repo']]);smalltalk.send($rec, "_class_", ["project_tile"]);return smalltalk.send($rec, "_with_", [(function(){smalltalk.send(smalltalk.send(html, "_h2", []), "_with_", [self['@repo']]);return (function($rec){smalltalk.send($rec, "_class_", ["pull_requests"]);return smalltalk.send($rec, "_with_", [(function(){return smalltalk.send(self['@pulls'], "_do_", [(function(pull){return (function($rec){smalltalk.send($rec, "_withPull_", [pull]);return smalltalk.send($rec, "_renderOn_", [html]);})(smalltalk.send((smalltalk.PullRequestTile || PullRequestTile), "_new", []));})]);})]);})(smalltalk.send(html, "_div", []));})]);})(smalltalk.send(html, "_div", []));
 smalltalk.send(html, "_br", []);
 return self;}
 }),

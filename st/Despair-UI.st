@@ -1,6 +1,6 @@
 Smalltalk current createPackage: 'Despair-UI' properties: #{}!
 Widget subclass: #PullRequestTile
-	instanceVariableNames: 'pull minutesOld'
+	instanceVariableNames: 'pull minutesOld lastUpdatedText'
 	category: 'Despair-UI'!
 
 !PullRequestTile methodsFor: 'initializers'!
@@ -17,14 +17,13 @@ initialize
 !PullRequestTile methodsFor: 'rendering'!
 
 renderOn: html
+	lastUpdatedText := self lastUpdated.
 	html div
 		class: 'pull_request_tile sadness_', (self sadness asString);
 		with: [
-			html strong with: (pull title).
+			html strong with: [ html a href: (pull url); target: '_blank'; with: (pull title) ].
 			html br.
-			html with: 'Last updated: ', self lastUpdated.
-			html br.
-			html with: (self sadness).
+			html with: 'Last updated: ', lastUpdatedText.
 	].
 !
 
@@ -77,15 +76,17 @@ withRepo: aRepo andPullRequests: anArrayOfRequests
 !Project methodsFor: 'rendering'!
 
 renderOn: html
-	html with: repo.
 	html div
 		id: repo;
 		class: 'project_tile';
 		with: [
-			pulls do: [ :pull |
-				PullRequestTile new withPull: pull; renderOn: html.
-		]
-	].
+			html h2 with: repo.
+			html div
+				class: 'pull_requests';
+				with: [
+					pulls do: [ :pull | PullRequestTile new withPull: pull; renderOn: html ]
+				].
+		].
 	html br.
 ! !
 

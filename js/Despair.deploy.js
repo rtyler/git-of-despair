@@ -6,10 +6,12 @@ smalltalk.method({
 selector: unescape('bootstrap%3A'),
 fn: function (aUsername){
 var self=this;
+var presetRepoName=nil;
 (self['@username']=aUsername);
-smalltalk.send((smalltalk.Repo || Repo), "_fetchReposFor_withEachDo_finally_", [aUsername, (function(repo){var reponame=nil;
+(presetRepoName=smalltalk.send((typeof window == 'undefined' ? nil : window), "_at_", ["despair_repo"]));
+(($receiver = presetRepoName) == nil || $receiver == undefined) ? (function(){return smalltalk.send((smalltalk.Repo || Repo), "_fetchReposFor_withEachDo_finally_", [aUsername, (function(repo){var reponame=nil;
 var forks=nil;
-(reponame=smalltalk.send(repo, "_at_", ["name"]));(forks=smalltalk.send(repo, "_at_", ["forks"]));return ((($receiver = ((($receiver = forks).klass === smalltalk.Number) ? $receiver <(2) : smalltalk.send($receiver, "__lt", [(2)]))).klass === smalltalk.Boolean) ? (! $receiver ? (function(){return (($receiver = reponame) != nil && $receiver != undefined) ? (function(){return smalltalk.send(self['@repos'], "_at_put_", [reponame, smalltalk.send((smalltalk.Array || Array), "_new", [])]);})() : nil;})() : nil) : smalltalk.send($receiver, "_ifFalse_", [(function(){return (($receiver = reponame) != nil && $receiver != undefined) ? (function(){return smalltalk.send(self['@repos'], "_at_put_", [reponame, smalltalk.send((smalltalk.Array || Array), "_new", [])]);})() : nil;})]));}), (function(){return smalltalk.send(self, "_loadPullRequests", []);})]);
+(reponame=smalltalk.send(repo, "_at_", ["name"]));(forks=smalltalk.send(repo, "_at_", ["forks"]));return ((($receiver = ((($receiver = forks).klass === smalltalk.Number) ? $receiver <(2) : smalltalk.send($receiver, "__lt", [(2)]))).klass === smalltalk.Boolean) ? (! $receiver ? (function(){return (($receiver = reponame) != nil && $receiver != undefined) ? (function(){return smalltalk.send(self['@repos'], "_at_put_", [reponame, smalltalk.send((smalltalk.Array || Array), "_new", [])]);})() : nil;})() : nil) : smalltalk.send($receiver, "_ifFalse_", [(function(){return (($receiver = reponame) != nil && $receiver != undefined) ? (function(){return smalltalk.send(self['@repos'], "_at_put_", [reponame, smalltalk.send((smalltalk.Array || Array), "_new", [])]);})() : nil;})]));}), (function(){return smalltalk.send(self, "_loadPullRequests", []);})]);})() : (function(){smalltalk.send(self['@repos'], "_at_put_", [presetRepoName, smalltalk.send((smalltalk.Array || Array), "_new", [])]);return smalltalk.send(self, "_loadPullRequests", []);})();
 return self;}
 }),
 smalltalk.DespairApp);
@@ -61,6 +63,17 @@ selector: unescape('activeRepos'),
 fn: function (){
 var self=this;
 return self['@activeRepos'];
+return self;}
+}),
+smalltalk.DespairApp);
+
+smalltalk.addMethod(
+unescape('_repos'),
+smalltalk.method({
+selector: unescape('repos'),
+fn: function (){
+var self=this;
+return self['@repos'];
 return self;}
 }),
 smalltalk.DespairApp);

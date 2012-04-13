@@ -7,6 +7,10 @@ Object subclass: #DespairApp
 
 activeRepos
 	^ activeRepos.
+!
+
+repos
+	^ repos.
 ! !
 
 !DespairApp methodsFor: 'actions'!
@@ -44,16 +48,25 @@ activateRepo: aRepoName
 
 bootstrap: aUsername
 	" Start the application loading with aUsername "
+	| presetRepoName |
 	username := aUsername.
+	presetRepoName := (window at: 'despair_repo').
 
-	Repo fetchReposFor: aUsername
-		withEachDo: [ :repo |
-			| reponame forks |
-			reponame := repo at: 'name'.
-			forks := repo at: 'forks'.
-			(forks < 2) ifFalse: [ reponame ifNotNil: [ repos at: reponame put: (Array new) ] ]
+	presetRepoName
+		ifNotNil: [
+			repos at: presetRepoName put: (Array new).
+			self loadPullRequests.
 		]
-		finally: [ self loadPullRequests ].
+		ifNil: [
+			Repo fetchReposFor: aUsername
+				withEachDo: [ :repo |
+					| reponame forks |
+					reponame := repo at: 'name'.
+					forks := repo at: 'forks'.
+					(forks < 2) ifFalse: [ reponame ifNotNil: [ repos at: reponame put: (Array new) ] ]
+				]
+				finally: [ self loadPullRequests ].
+		].
 !
 
 initialize
