@@ -1,4 +1,18 @@
+.logo {
+  background-image: url('/images/crappy-logo.png');
+  background-repeat: no-repeat;
+  width: 630px;
+  height: 430px;
+  overflow: hidden;
+}
 
+
+.logo input {
+  font-size: 18px;
+  color: #333;
+  /* this is stupid and ugly */
+  margin-top: 250px;
+}
 
 .project_tile {
   padding: 10px;

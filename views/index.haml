@@ -1,16 +1,16 @@
 %html
   %head
+    %link{:media => 'screen',
+          :rel => 'stylesheet',
+          :href => '/css/despair.css'}
     %title
       Git of Despair
   %body
-    - if Resin.development?
-      %div{:style => 'float: right;'}
-        %button{:onclick => 'smalltalk.Browser._open(); return false;'}
-          Run Amber IDE
+    %center
+      %div.logo
+        %form{:onsubmit => 'window.location=this.repo.value; return false;'}
+          %input{:type => 'text',
+                 :name => 'repo',
+                 :size => 50,
+                 :placeholder => 'Enter a username or username/reponame'}
 
-
-    %h2
-      Git of Despair
-
-
-    = embed_amber
