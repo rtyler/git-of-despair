@@ -1,0 +1,16 @@
+%html
+  %head
+    %title
+      Git of Despair
+  %body
+    - if Resin.development?
+      %div{:style => 'float: right;'}
+        %button{:onclick => 'smalltalk.Browser._open(); return false;'}
+          Run Amber IDE
+
+
+    %h2
+      Git of Despair
+
+
+    = embed_amber
