@@ -1,0 +1,33 @@
+
+
+.project_tile {
+  padding: 10px;
+  clear: both;
+}
+
+.pull_request_tile {
+  width: 300px;
+  height: 75px;
+  border: 1px solid #cecece;
+  color: #333;
+  float: left;
+}
+
+/* Sadness Levels {{{ */
+.sadness_low {
+  background-color: green;
+}
+.sadness_medium {
+  background-color: yellow;
+}
+.sadness_high {
+  background-color: pink;
+}
+.sadness_veryhigh {
+  background-color: red;
+}
+.sadness_bug {
+}
+/* }}} */
+
+
