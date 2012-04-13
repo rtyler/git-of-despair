@@ -9,7 +9,7 @@ module Despair
     end
 
     get '/:name' do |name|
-      haml :project, :locals => {:project => name}
+      haml :user, :locals => {:user => name}
     end
   end
 end

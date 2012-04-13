@@ -1,0 +1,16 @@
+%html
+  %head
+    %title
+      #{user} of Despair
+    %script{:type => 'text/javascript'}
+      window.despair_username = "#{user}";
+  %body
+    - if Resin.development?
+      %div{:style => 'float: right;'}
+        %button{:onclick => 'smalltalk.Browser._open(); return false;'}
+          Run Amber IDE
+    %h2
+      #{user} of Despair
+
+    = embed_amber(:on_ready => "smalltalk.DespairApp._current()._bootstrap_('#{user}');")
+
