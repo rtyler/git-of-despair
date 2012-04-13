@@ -24,5 +24,10 @@
     %br/
     %div.projects
 
-    = embed_amber(:on_ready => "smalltalk.DespairApp._current()._bootstrap_('#{user}');")
+    - if Resin.development?
+      = embed_amber(:on_ready => "smalltalk.DespairApp._current()._bootstrap_('#{user}');")
+    - else
+      %script{:type => 'text/javascript', :src => '/js/resin-app.deploy.js'}
+      %script{:type => 'text/javascript'}
+        smalltalk.DespairApp._current()._bootstrap_("#{user}");
 
