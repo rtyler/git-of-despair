@@ -89,3 +89,15 @@ flushCurrent
 	current := nil.
 ! !
 
+!Date methodsFor: '*Despair'!
+
+secondsDifference: anotherDate
+	^ (((self time) - (anotherDate time)) / 1000).
+! !
+
+!Date methodsFor: '*Despair'!
+
+secondsDifference: anotherDate
+	^ (((self time) - (anotherDate time)) / 1000).
+! !
+

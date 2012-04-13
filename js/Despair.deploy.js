@@ -103,3 +103,25 @@ return self;}
 smalltalk.DespairApp.klass);
 
 
+smalltalk.addMethod(
+unescape('_secondsDifference_'),
+smalltalk.method({
+selector: unescape('secondsDifference%3A'),
+fn: function (anotherDate){
+var self=this;
+return ((($receiver = ((($receiver = smalltalk.send(self, "_time", [])).klass === smalltalk.Number) ? $receiver -smalltalk.send(anotherDate, "_time", []) : smalltalk.send($receiver, "__minus", [smalltalk.send(anotherDate, "_time", [])]))).klass === smalltalk.Number) ? $receiver /(1000) : smalltalk.send($receiver, "__slash", [(1000)]));
+return self;}
+}),
+smalltalk.Date);
+
+smalltalk.addMethod(
+unescape('_secondsDifference_'),
+smalltalk.method({
+selector: unescape('secondsDifference%3A'),
+fn: function (anotherDate){
+var self=this;
+return ((($receiver = ((($receiver = smalltalk.send(self, "_time", [])).klass === smalltalk.Number) ? $receiver -smalltalk.send(anotherDate, "_time", []) : smalltalk.send($receiver, "__minus", [smalltalk.send(anotherDate, "_time", [])]))).klass === smalltalk.Number) ? $receiver /(1000) : smalltalk.send($receiver, "__slash", [(1000)]));
+return self;}
+}),
+smalltalk.Date);
+

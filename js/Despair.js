@@ -143,3 +143,35 @@ referencedClasses: []
 smalltalk.DespairApp.klass);
 
 
+smalltalk.addMethod(
+unescape('_secondsDifference_'),
+smalltalk.method({
+selector: unescape('secondsDifference%3A'),
+category: '*Despair',
+fn: function (anotherDate){
+var self=this;
+return ((($receiver = ((($receiver = smalltalk.send(self, "_time", [])).klass === smalltalk.Number) ? $receiver -smalltalk.send(anotherDate, "_time", []) : smalltalk.send($receiver, "__minus", [smalltalk.send(anotherDate, "_time", [])]))).klass === smalltalk.Number) ? $receiver /(1000) : smalltalk.send($receiver, "__slash", [(1000)]));
+return self;},
+args: ["anotherDate"],
+source: unescape('secondsDifference%3A%20anotherDate%0A%09%5E%20%28%28%28self%20time%29%20-%20%28anotherDate%20time%29%29%20/%201000%29.'),
+messageSends: [unescape("/"), unescape("-"), "time"],
+referencedClasses: []
+}),
+smalltalk.Date);
+
+smalltalk.addMethod(
+unescape('_secondsDifference_'),
+smalltalk.method({
+selector: unescape('secondsDifference%3A'),
+category: '*Despair',
+fn: function (anotherDate){
+var self=this;
+return ((($receiver = ((($receiver = smalltalk.send(self, "_time", [])).klass === smalltalk.Number) ? $receiver -smalltalk.send(anotherDate, "_time", []) : smalltalk.send($receiver, "__minus", [smalltalk.send(anotherDate, "_time", [])]))).klass === smalltalk.Number) ? $receiver /(1000) : smalltalk.send($receiver, "__slash", [(1000)]));
+return self;},
+args: ["anotherDate"],
+source: unescape('secondsDifference%3A%20anotherDate%0A%09%5E%20%28%28%28self%20time%29%20-%20%28anotherDate%20time%29%29%20/%201000%29.'),
+messageSends: [unescape("/"), unescape("-"), "time"],
+referencedClasses: []
+}),
+smalltalk.Date);
+
