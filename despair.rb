@@ -8,8 +8,11 @@ module Despair
       halt 404
     end
 
-    get '/:name' do |name|
-      haml :user, :locals => {:user => name}
+    get '/:name/?:repo?' do |name, repo|
+      if ['css', 'js', 'images'].include? name
+        pass
+      end
+      haml :user, :locals => {:user => name, :repo => repo}
     end
   end
 end
