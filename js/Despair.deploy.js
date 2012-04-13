@@ -32,7 +32,7 @@ smalltalk.method({
 selector: unescape('loadPullRequests'),
 fn: function (){
 var self=this;
-smalltalk.send(smalltalk.send(self['@repos'], "_keys", []), "_do_", [(function(repo){var fullname=nil;
+smalltalk.send(smalltalk.send(smalltalk.send(self['@repos'], "_keys", []), "_reversed", []), "_do_", [(function(repo){var fullname=nil;
 (fullname=smalltalk.send(smalltalk.send(self['@username'], "__comma", [unescape("/")]), "__comma", [repo]));return smalltalk.send((smalltalk.PullRequest || PullRequest), "_fetchFor_withEachDo_finally_", [fullname, (function(pull){var stack=nil;
 (stack=smalltalk.send(self['@repos'], "_at_ifAbsent_", [repo, (function(){return nil;})]));return (($receiver = stack) != nil && $receiver != undefined) ? (function(){return smalltalk.send(stack, "_add_", [pull]);})() : nil;}), (function(){var stack=nil;
 (stack=smalltalk.send(self['@repos'], "_at_ifAbsent_", [repo, (function(){return nil;})]));return ((($receiver = ((($receiver = smalltalk.send(stack, "_size", [])).klass === smalltalk.Number) ? $receiver >(0) : smalltalk.send($receiver, "__gt", [(0)]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(self, "_activateRepo_", [repo]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(self, "_activateRepo_", [repo]);})]));})]);})]);

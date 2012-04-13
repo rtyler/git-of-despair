@@ -12,7 +12,7 @@ activeRepos
 !DespairApp methodsFor: 'actions'!
 
 loadPullRequests
-	repos keys do: [ :repo |
+	repos keys reversed do: [ :repo |
 		| fullname |
 		fullname := username, '/', repo.
 		PullRequest fetchFor: fullname

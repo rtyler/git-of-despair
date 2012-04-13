@@ -43,14 +43,14 @@ selector: unescape('loadPullRequests'),
 category: 'actions',
 fn: function (){
 var self=this;
-smalltalk.send(smalltalk.send(self['@repos'], "_keys", []), "_do_", [(function(repo){var fullname=nil;
+smalltalk.send(smalltalk.send(smalltalk.send(self['@repos'], "_keys", []), "_reversed", []), "_do_", [(function(repo){var fullname=nil;
 (fullname=smalltalk.send(smalltalk.send(self['@username'], "__comma", [unescape("/")]), "__comma", [repo]));return smalltalk.send((smalltalk.PullRequest || PullRequest), "_fetchFor_withEachDo_finally_", [fullname, (function(pull){var stack=nil;
 (stack=smalltalk.send(self['@repos'], "_at_ifAbsent_", [repo, (function(){return nil;})]));return (($receiver = stack) != nil && $receiver != undefined) ? (function(){return smalltalk.send(stack, "_add_", [pull]);})() : nil;}), (function(){var stack=nil;
 (stack=smalltalk.send(self['@repos'], "_at_ifAbsent_", [repo, (function(){return nil;})]));return ((($receiver = ((($receiver = smalltalk.send(stack, "_size", [])).klass === smalltalk.Number) ? $receiver >(0) : smalltalk.send($receiver, "__gt", [(0)]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(self, "_activateRepo_", [repo]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(self, "_activateRepo_", [repo]);})]));})]);})]);
 return self;},
 args: [],
-source: unescape('loadPullRequests%0A%09repos%20keys%20do%3A%20%5B%20%3Arepo%20%7C%0A%09%09%7C%20fullname%20%7C%0A%09%09fullname%20%3A%3D%20username%2C%20%27/%27%2C%20repo.%0A%09%09PullRequest%20fetchFor%3A%20fullname%0A%09%09%09withEachDo%3A%20%5B%20%3Apull%20%7C%0A%09%09%09%09%7C%20stack%20%7C%0A%09%09%09%09stack%20%3A%3D%20%28repos%20at%3A%20repo%20ifAbsent%3A%20%5Bnil%5D%29.%0A%09%09%09%09stack%20ifNotNil%3A%20%5B%20stack%20add%3A%20pull%20%5D.%0A%09%09%09%5D%0A%09%09%09finally%3A%20%5B%0A%09%09%09%09%7C%20stack%20%7C%0A%09%09%09%09stack%20%3A%3D%20%28repos%20at%3A%20repo%20ifAbsent%3A%20%5B%5D%29.%0A%09%09%09%09%28stack%20size%29%20%3E%200%20ifTrue%3A%20%5B%20self%20activateRepo%3A%20repo%20%5D.%0A%09%09%09%5D%0A%09%5D.'),
-messageSends: ["do:", "keys", unescape("%2C"), "fetchFor:withEachDo:finally:", "at:ifAbsent:", "ifNotNil:", "add:", "ifTrue:", unescape("%3E"), "size", "activateRepo:"],
+source: unescape('loadPullRequests%0A%09repos%20keys%20reversed%20do%3A%20%5B%20%3Arepo%20%7C%0A%09%09%7C%20fullname%20%7C%0A%09%09fullname%20%3A%3D%20username%2C%20%27/%27%2C%20repo.%0A%09%09PullRequest%20fetchFor%3A%20fullname%0A%09%09%09withEachDo%3A%20%5B%20%3Apull%20%7C%0A%09%09%09%09%7C%20stack%20%7C%0A%09%09%09%09stack%20%3A%3D%20%28repos%20at%3A%20repo%20ifAbsent%3A%20%5Bnil%5D%29.%0A%09%09%09%09stack%20ifNotNil%3A%20%5B%20stack%20add%3A%20pull%20%5D.%0A%09%09%09%5D%0A%09%09%09finally%3A%20%5B%0A%09%09%09%09%7C%20stack%20%7C%0A%09%09%09%09stack%20%3A%3D%20%28repos%20at%3A%20repo%20ifAbsent%3A%20%5B%5D%29.%0A%09%09%09%09%28stack%20size%29%20%3E%200%20ifTrue%3A%20%5B%20self%20activateRepo%3A%20repo%20%5D.%0A%09%09%09%5D%0A%09%5D.'),
+messageSends: ["do:", "reversed", "keys", unescape("%2C"), "fetchFor:withEachDo:finally:", "at:ifAbsent:", "ifNotNil:", "add:", "ifTrue:", unescape("%3E"), "size", "activateRepo:"],
 referencedClasses: ["PullRequest"]
 }),
 smalltalk.DespairApp);
