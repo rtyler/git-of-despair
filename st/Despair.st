@@ -33,11 +33,14 @@ loadPullRequests
 			]
 			finally: [ : success |
 				| stack |
-				console log: 'Finding pull requests succeeded? ', success.
 				stack := (repos at: repo ifAbsent: []).
 				(stack size) > 0
 					ifTrue: [ self activateRepo: repo ]
-					ifFalse: [ self hideSpinner. self displayError: 'No pull requests found'.].
+					ifFalse: [
+						self hideSpinner.
+						" We really only need to display this error if we're on a repo page"
+						(repos size) = 1 ifTrue: [ self displayError: 'No pull requests found'. ]
+					].
 			]
 	].
 !
