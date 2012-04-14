@@ -16,6 +16,12 @@ repos
 !DespairApp methodsFor: 'actions'!
 
 loadPullRequests
+	(repos size) = 0 ifTrue: [
+		self displayError: 'No repos found'.
+		self hideSpinner.
+		^ false
+	].
+
 	repos keys reversed do: [ :repo |
 		| fullname |
 		fullname := username, '/', repo.
@@ -25,23 +31,38 @@ loadPullRequests
 				stack := (repos at: repo ifAbsent: [nil]).
 				stack ifNotNil: [ stack add: pull ].
 			]
-			finally: [
+			finally: [ : success |
 				| stack |
+				console log: 'Finding pull requests succeeded? ', success.
 				stack := (repos at: repo ifAbsent: []).
-				(stack size) > 0 ifTrue: [ self activateRepo: repo ].
+				(stack size) > 0
+					ifTrue: [ self activateRepo: repo ]
+					ifFalse: [ self hideSpinner. self displayError: 'No pull requests found'.].
 			]
 	].
 !
 
 activateRepo: aRepoName
 	| pulls |
-	"As soon as we start activating repos, it's safe to hide the spinner from the user"
-	'div.spinner' asJQuery hide.
+	self hideSpinner.
 	pulls := repos at: aRepoName ifAbsent: [].
 	pulls ifNotNil: [
 		activeRepos add: aRepoName.
 		(Project new withRepo: aRepoName andPullRequests: pulls) appendToJQuery: 'div.projects' asJQuery.
 	].
+!
+
+hideSpinner
+	'div.spinner' asJQuery hide.
+!
+
+displayError: errorString
+	[ :html |
+		html div
+			id: 'error';
+			style: 'border: 3px solid red; background-color: pink; font-weight: bold;';
+			with: errorString.
+	] appendToJQuery: 'body' asJQuery.
 ! !
 
 !DespairApp methodsFor: 'initializers'!
@@ -65,7 +86,7 @@ bootstrap: aUsername
 					forks := repo at: 'forks'.
 					(forks < 2) ifFalse: [ reponame ifNotNil: [ repos at: reponame put: (Array new) ] ]
 				]
-				finally: [ self loadPullRequests ].
+				finally: [ :success | self loadPullRequests ].
 		].
 !
 
